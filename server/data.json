@@ -1,0 +1,197 @@
+{
+  "content": {
+    "services": [
+      {
+        "id": "1",
+        "icon": "PenTool",
+        "title": "Diseño Web a Medida",
+        "description": "Sitios web únicos diseñados para capturar la esencia de tu marca y convertir visitantes en clientes.",
+        "image": "/images/servicio-diseno-web.jpg"
+      },
+      {
+        "id": "2",
+        "icon": "Globe",
+        "title": "Alquiler de Páginas Web",
+        "description": "Accede a un sitio web profesional por suscripción mensual. Sin inversión inicial, sin preocupaciones.",
+        "image": "/images/servicio-alquiler-web.jpg"
+      },
+      {
+        "id": "3",
+        "icon": "TrendingUp",
+        "title": "Posicionamiento SEO",
+        "description": "Optimización completa para que tu web aparezca en los primeros resultados de búsqueda.",
+        "image": "/images/servicio-seo.jpg"
+      }
+    ],
+    "portfolio": [
+      {
+        "id": "1",
+        "title": "Le Jardin Secret",
+        "category": "Restaurante",
+        "image": "/images/proyecto-portfolio-1.jpg"
+      },
+      {
+        "id": "2",
+        "title": "EcoChic",
+        "category": "Moda Sostenible",
+        "image": "/images/proyecto-portfolio-2.jpg"
+      },
+      {
+        "id": "3",
+        "title": "Raíces y Equilibrio",
+        "category": "Yoga & Bienestar",
+        "image": "/images/proyecto-portfolio-3.jpg"
+      },
+      {
+        "id": "4",
+        "title": "Architekto",
+        "category": "Arquitectura",
+        "image": "/images/proyecto-portfolio-4.jpg"
+      }
+    ],
+    "process": [
+      {
+        "id": "1",
+        "number": "01",
+        "title": "Descubrimiento",
+        "description": "Nos sumergimos en tu marca, tus objetivos y tu audiencia para entender exactamente lo que necesitas.",
+        "icon": "Search"
+      },
+      {
+        "id": "2",
+        "number": "02",
+        "title": "Diseño",
+        "description": "Creamos propuestas visuales que capturan la esencia de tu negocio con la estética de la costa gallega.",
+        "icon": "Palette"
+      },
+      {
+        "id": "3",
+        "number": "03",
+        "title": "Desarrollo",
+        "description": "Construimos tu sitio con las últimas tecnologías, optimizado para velocidad y experiencia de usuario.",
+        "icon": "Code"
+      },
+      {
+        "id": "4",
+        "number": "04",
+        "title": "Lanzamiento",
+        "description": "Tu web lista para volar. Te acompañamos en el lanzamiento y seguimiento post-lanzamiento.",
+        "icon": "Rocket"
+      }
+    ],
+    "plans": [
+      {
+        "id": "1",
+        "name": "Básico",
+        "description": "Suscripción web ágil para páginas de aterrizaje, portfolios o pequeños negocios locales.",
+        "price": "49",
+        "featured": false,
+        "features": [
+          "Diseño web profesional adaptativo",
+          "Alojamiento web ultrarrápido",
+          "Dominio de marca incluido",
+          "Email personalizado corporativo",
+          "Actualizaciones de texto y fotos",
+          "Soporte estándar por email"
+        ]
+      },
+      {
+        "id": "2",
+        "name": "Starter",
+        "description": "Perfecto para autónomos e independientes que buscan destacar con fuerza.",
+        "price": "79",
+        "featured": false,
+        "features": [
+          "Todo lo del plan Básico",
+          "Diseño personalizado optimizado",
+          "Dominio propio gratuito (.com / .es)",
+          "Email personalizado incluido",
+          "SEO de base indexado en Google",
+          "Soporte rápido en menos de 24h"
+        ]
+      },
+      {
+        "id": "3",
+        "name": "Professional",
+        "description": "Suscripción avanzada recomendada con sección de blog o portfolio dinámico.",
+        "price": "99",
+        "featured": true,
+        "features": [
+          "Todo lo del plan Starter",
+          "Blog o Portfolio dinámico",
+          "Formularios de captación ilimitados",
+          "Email personalizado incluido",
+          "Copias de seguridad semanales",
+          "Soporte prioritario por WhatsApp/Teléfono",
+          "Métricas mensuales de rendimiento"
+        ]
+      },
+      {
+        "id": "4",
+        "name": "Business",
+        "description": "Máximo rendimiento digital y e-commerce integrado para marcas ambiciosas.",
+        "price": "129",
+        "featured": false,
+        "features": [
+          "Todo lo del plan Professional",
+          "E-commerce integrado (hasta 15 productos)",
+          "Email personalizado incluido",
+          "SEO avanzado con análisis de palabras clave",
+          "Pasarela de pago Stripe / PayPal",
+          "Soporte prioritario 24/7",
+          "Mantenimiento técnico y optimización proactiva"
+        ]
+      }
+    ],
+    "testimonials": [
+      {
+        "id": "1",
+        "text": "Bretema Studio transformó por completo nuestra presencia online. El proceso fue fluido y el resultado superó todas nuestras expectativas. Nuestra web ahora refleja verdaderamente la esencia de nuestro restaurante.",
+        "author": "María López",
+        "role": "Propietaria, Le Jardin Secret",
+        "avatar": "/images/avatar-testimonio-1.jpg"
+      },
+      {
+        "id": "2",
+        "text": "El modelo de alquiler es perfecto para nuestro negocio. Tener una web profesional sin una gran inversión inicial nos permitió centrarnos en lo que realmente importa: nuestros clientes.",
+        "author": "Carlos Martínez",
+        "role": "CEO, EcoChic",
+        "avatar": "/images/avatar-testimonio-2.jpg"
+      },
+      {
+        "id": "3",
+        "text": "Desde el primer contacto, el equipo de Bretema entendió perfectamente lo que necesitábamos. Nuestra web de yoga transmite exactamente la paz y armonía que queremos transmitir en nuestro estudio.",
+        "author": "Laura Gómez",
+        "role": "Directora, Raíces y Equilibrio",
+        "avatar": "/images/avatar-testimonio-3.jpg"
+      }
+    ],
+    "seo": {
+      "metaTitle": "Bretema Studio | Diseño Web por Suscripción Inspirado en Galicia",
+      "metaDescription": "Estudio de diseño web premium. Ofrecemos diseño web por suscripción mensual, posicionamiento SEO avanzado y soporte continuo, con una estética costera gallega y sin inversión inicial.",
+      "keywords": "diseño web, alquiler de paginas web, suscripcion web, posicionamiento seo, galicia, paginas web profesionales, estudio web galicia"
+    }
+  },
+  "messages": [
+    {
+      "id": "1",
+      "name": "Sofía Fernández",
+      "email": "sofia@disenoyvida.com",
+      "message": "Hola, me interesa el plan Starter para mi tienda de artesanía en Santiago de Compostela. ¿Cómo funciona el dominio el primer año?",
+      "planSelected": "Starter",
+      "timestamp": "2026-07-16T18:30:00Z",
+      "automatedReply": "¡Hola Sofía! Gracias por ponerte en contacto con Bretema Studio. Nos encanta tu proyecto de artesanía en Santiago. Respecto a tu pregunta, en el plan Starter incluimos el registro y configuración del dominio gratis el primer año. Nos encargamos de todo el proceso técnico para que no tengas que preocuparte de nada. Nos pondremos en contacto contigo en breve para tener una sesión de descubrimiento. ¡Un saludo!",
+      "manualReplies": []
+    },
+    {
+      "id": "2",
+      "name": "Hugo Castro",
+      "email": "hugo@mariscogalicia.com",
+      "message": "Buenos días, querríamos lanzar una web con blog integrado y un catálogo de nuestros productos marinos. Creemos que el plan Professional se adapta bien. ¿Podríamos añadir multiidioma?",
+      "planSelected": "Professional",
+      "timestamp": "2026-07-17T09:15:00Z",
+      "automatedReply": "¡Hola Hugo! Qué gran proyecto, los productos marinos gallegos merecen una vitrina digital de primer nivel. El plan Professional incluye blog integrado y diseño personalizado avanzado. Respecto al soporte multiidioma, es una excelente mejora de SEO que podemos integrar perfectamente con un pequeño ajuste o mediante el plan Business. Nos encantaría agendar una videollamada para detallarlo. ¡Hablamos pronto!",
+      "manualReplies": []
+    }
+  ]
+}

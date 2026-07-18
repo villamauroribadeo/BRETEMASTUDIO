@@ -1,0 +1,6 @@
+{
+  "name": "Brétema Studio Web",
+  "description": "Estudio de diseño web premium Brétema Studio Web, con CMS integrado, auditoría SEO con IA y gestión de correos automática.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
