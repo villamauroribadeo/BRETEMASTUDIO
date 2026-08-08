@@ -1,6 +1,6 @@
 {
-  "name": "Ribadeo Studio Web",
-  "description": "Estudio de diseño web premium Ribadeo Studio Web, con CMS integrado, auditoría SEO con IA y gestión de correos automática.",
+  "name": "Ribadeo Web Studio",
+  "description": "Estudio de diseño web premium Ribadeo Web Studio, con CMS integrado, auditoría SEO con IA y gestión de correos automática.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

@@ -168,7 +168,7 @@ export const DEFAULT_CONTENT: CMSContent = {
     }
   ],
   seo: {
-    metaTitle: "Ribadeo Studio Web | Diseño Web por Suscripción Inspirado en Galicia",
+    metaTitle: "Ribadeo Web Studio | Diseño Web por Suscripción Inspirado en Galicia",
     metaDescription: "Estudio de diseño web premium. Ofrecemos diseño web por suscripción mensual, posicionamiento SEO avanzado y soporte continuo, desde Ribadeo con alcance global y sin inversión inicial.",
     keywords: "diseño web, alquiler de paginas web, suscripcion web, posicionamiento seo, galicia, ribadeo, paginas web profesionales, estudio web galicia"
   }

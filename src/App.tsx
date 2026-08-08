@@ -73,7 +73,7 @@ export default function App() {
   // Dynamically update document head SEO titles & tags!
   useEffect(() => {
     if (content?.seo) {
-      document.title = content.seo.metaTitle || 'Bretema Studio | Diseño Web';
+      document.title = content.seo.metaTitle || 'Ribadeo Web Studio | Diseño Web';
       
       // Update meta description
       let metaDesc = document.querySelector('meta[name="description"]');
@@ -281,7 +281,7 @@ export default function App() {
 
         {/* Bottom copy row */}
         <div className="max-w-7xl mx-auto px-6 md:px-12 border-t border-white/10 mt-6 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-sans text-[10px] text-white/50 relative z-10">
-          <span>&copy; {new Date().getFullYear()} Brétema Studio Web. Todos los derechos reservados.</span>
+          <span>&copy; {new Date().getFullYear()} Ribadeo Web Studio. Todos los derechos reservados.</span>
           <div className="flex gap-4">
             <button onClick={() => { setCurrentLegalView('politica-privacidad'); setActiveServiceView('none'); }} className="hover:text-sky-300 transition-colors font-sans">Política de Privacidad</button>
             <button onClick={() => { setCurrentLegalView('terminos-servicio'); setActiveServiceView('none'); }} className="hover:text-sky-300 transition-colors font-sans">Términos de Servicio</button>

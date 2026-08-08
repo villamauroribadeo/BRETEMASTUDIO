@@ -37,8 +37,8 @@ export default function Contacto({ selectedPlan, onClearPlan }: ContactoProps) {
     // Track GA4 Submit Click / Attempt
     trackContactClick('click', { form_name: 'contacto', plan });
 
-    const mailtoUrl = `mailto:hola@ribadeoweb.com?subject=${encodeURIComponent('Nueva consulta de ' + name + ' - Ribadeo Studio Web')}&body=${encodeURIComponent(
-      `Nombre: ${name}\nEmail: ${email}\nTeléfono: ${phone || 'No proporcionado'}\nPlan interesado: ${plan || 'Ninguno'}\n\nMensaje:\n${message}\n\n---\nEnviado desde el formulario de contacto de Ribadeo Studio Web.`
+    const mailtoUrl = `mailto:hola@ribadeoweb.com?subject=${encodeURIComponent('Nueva consulta de ' + name + ' - Ribadeo Web Studio')}&body=${encodeURIComponent(
+      `Nombre: ${name}\nEmail: ${email}\nTeléfono: ${phone || 'No proporcionado'}\nPlan interesado: ${plan || 'Ninguno'}\n\nMensaje:\n${message}\n\n---\nEnviado desde el formulario de contacto de Ribadeo Web Studio.`
     )}`;
 
     try {
@@ -90,14 +90,14 @@ export default function Contacto({ selectedPlan, onClearPlan }: ContactoProps) {
         message,
         planSelected: plan || undefined,
         timestamp: new Date().toISOString(),
-        automatedReply: `¡Hola, ${name}! Muchas gracias por ponerte en contacto con Ribadeo Studio Web. Hemos recibido tu mensaje con éxito.
+        automatedReply: `¡Hola, ${name}! Muchas gracias por ponerte en contacto con Ribadeo Web Studio. Hemos recibido tu mensaje con éxito.
 
 Tu consulta: "${message}"
 
 Un miembro de nuestro equipo lo revisará en detalle y se pondrá en contacto contigo en las próximas horas para coordinar una sesión de asesoramiento gratuito. ¡Que tengas un excelente día!
 
 Atentamente,
-El equipo de Ribadeo Studio Web`
+El equipo de Ribadeo Web Studio`
       };
       setSubmittedData(fallbackData);
 

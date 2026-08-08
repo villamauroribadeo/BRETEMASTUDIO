@@ -72,7 +72,7 @@ export default function Navigation({ onAdminClick, isAdmin, onExitAdmin, onExitL
             className="flex items-center gap-2 group"
           >
             <span className="font-valuxe text-2xl font-bold tracking-tight transition-colors duration-300 text-white group-hover:text-sky-300">
-              Ribadeo Studio Web
+              Ribadeo Web Studio
             </span>
           </a>
 

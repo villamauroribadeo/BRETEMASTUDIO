@@ -35,7 +35,7 @@ export default function LegalPages({ view, onClose, onOpenCookieSettings }: Lega
           </button>
           
           <div className="text-xs text-white/50 font-mono">
-            <span>Ribadeo Studio Web</span>
+            <span>Ribadeo Web Studio</span>
             <span className="mx-2">/</span>
             <span className="text-sky-300 font-semibold uppercase">
               {view === 'aviso-legal' && 'Aviso Legal'}
@@ -107,10 +107,10 @@ export default function LegalPages({ view, onClose, onOpenCookieSettings }: Lega
                   2. Condiciones de Uso del Sitio Web
                 </h2>
                 <p>
-                  El acceso y/o uso de este portal de Brétema Studio atribuye la condición de <strong>USUARIO</strong>, que acepta, desde dicho acceso y/o uso, las Condiciones Generales de Uso aquí reflejadas. Las citadas Condiciones serán de aplicación independientemente de las Condiciones Generales de Contratación que en su caso resulten de obligado cumplimiento.
+                  El acceso y/o uso de este portal de Ribadeo Web Studio atribuye la condición de <strong>USUARIO</strong>, que acepta, desde dicho acceso y/o uso, las Condiciones Generales de Uso aquí reflejadas. Las citadas Condiciones serán de aplicación independientemente de las Condiciones Generales de Contratación que en su caso resulten de obligado cumplimiento.
                 </p>
                 <p>
-                  El sitio web de Brétema Studio proporciona el acceso a multitud de informaciones, servicios, programas o datos (en adelante, "los contenidos") en Internet pertenecientes a Brétema Studio o a sus licenciantes a los que el USUARIO pueda tener acceso. El USUARIO asume la responsabilidad del uso del portal.
+                  El sitio web de Ribadeo Web Studio proporciona el acceso a multitud de informaciones, servicios, programas o datos (en adelante, "los contenidos") en Internet pertenecientes a Ribadeo Web Studio o a sus licenciantes a los que el USUARIO pueda tener acceso. El USUARIO asume la responsabilidad del uso del portal.
                 </p>
               </section>
 
@@ -480,7 +480,7 @@ export default function LegalPages({ view, onClose, onOpenCookieSettings }: Lega
                   2. Compromiso de Permanencia Mínima
                 </h2>
                 <p>
-                  Dada la naturaleza del servicio (en el cual Brétema Studio asume la totalidad del coste de diseño inicial, maquetación, programación, compra de licencias y registro de dominios sin cobrar una tarifa inicial de implantación o puesta en marcha), todos nuestros planes de suscripción mensual están sujetos a un <strong>compromiso de permanencia mínima obligatoria de 12 meses</strong> naturales desde el primer pago del servicio.
+                  Dada la naturaleza del servicio (en el cual Ribadeo Web Studio asume la totalidad del coste de diseño inicial, maquetación, programación, compra de licencias y registro de dominios sin cobrar una tarifa inicial de implantación o puesta en marcha), todos nuestros planes de suscripción mensual están sujetos a un <strong>compromiso de permanencia mínima obligatoria de 12 meses</strong> naturales desde el primer pago del servicio.
                 </p>
                 <p>
                   Transcurrido el primer año de vigencia obligatoria, el contrato se prorrogará automáticamente por mensualidades sucesivas, pudiendo el cliente rescindir el servicio en cualquier momento con un preaviso mínimo de <strong>15 días hábiles</strong> mediante correo electrónico a hola@ribadeoweb.com.
