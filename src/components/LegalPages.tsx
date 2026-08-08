@@ -22,7 +22,7 @@ export default function LegalPages({ view, onClose, onOpenCookieSettings }: Lega
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-sky-500/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-4xl mx-auto relative z-10">
+      <div className="w-full max-w-6xl xl:max-w-7xl mx-auto relative z-10">
         
         {/* Breadcrumb & Go Back Top */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-white/10 pb-6 mb-10 text-left">
@@ -35,7 +35,7 @@ export default function LegalPages({ view, onClose, onOpenCookieSettings }: Lega
           </button>
           
           <div className="text-xs text-white/50 font-mono">
-            <span>Brétema Studio</span>
+            <span>Ribadeo Studio Web</span>
             <span className="mx-2">/</span>
             <span className="text-sky-300 font-semibold uppercase">
               {view === 'aviso-legal' && 'Aviso Legal'}
@@ -89,7 +89,7 @@ export default function LegalPages({ view, onClose, onOpenCookieSettings }: Lega
                   </div>
                   <div className="mt-2">
                     <span className="block text-white/40 uppercase tracking-wider font-bold mb-1">Email de Contacto:</span>
-                    <span className="text-sky-300 font-semibold select-all font-mono">hola@bretemastudio.com</span>
+                    <span className="text-sky-300 font-semibold select-all font-mono">hola@ribadeoweb.com</span>
                   </div>
                   <div className="mt-2">
                     <span className="block text-white/40 uppercase tracking-wider font-bold mb-1">Teléfono:</span>
@@ -212,7 +212,7 @@ export default function LegalPages({ view, onClose, onOpenCookieSettings }: Lega
                   <p><strong>Identidad del Responsable:</strong> <span className={placeholderClass}>[Nombre del Titular o Razón Social Completa]</span></p>
                   <p><strong>NIF / CIF:</strong> <span className={placeholderClass}>[NIF/CIF del Titular]</span></p>
                   <p><strong>Dirección Postal:</strong> <span className={placeholderClass}>[Dirección Completa, Ribadeo, Lugo, España]</span></p>
-                  <p><strong>Email de Contacto:</strong> <span className="text-sky-300 font-mono font-semibold">hola@bretemastudio.com</span></p>
+                  <p><strong>Email de Contacto:</strong> <span className="text-sky-300 font-mono font-semibold">hola@ribadeoweb.com</span></p>
                   <p><strong>Actividad de Tratamiento:</strong> Prestación y gestión de servicios de diseño y desarrollo web.</p>
                 </div>
               </section>
@@ -298,7 +298,7 @@ export default function LegalPages({ view, onClose, onOpenCookieSettings }: Lega
                   </div>
                 </div>
                 <p>
-                  Para ejercer cualquiera de estos derechos, basta con que envíe una comunicación escrita firmada, acompañada de una copia de su documento de identidad (DNI/NIE) o equivalente para verificar su identidad, al correo electrónico de contacto: <strong className="text-sky-300 font-mono select-all">hola@bretemastudio.com</strong> indicando en el asunto "Derechos Protección de Datos".
+                  Para ejercer cualquiera de estos derechos, basta con que envíe una comunicación escrita firmada, acompañada de una copia de su documento de identidad (DNI/NIE) o equivalente para verificar su identidad, al correo electrónico de contacto: <strong className="text-sky-300 font-mono select-all">hola@ribadeoweb.com</strong> indicando en el asunto "Derechos Protección de Datos".
                 </p>
                 <p>
                   Asimismo, tiene derecho a presentar una reclamación directa ante la autoridad de control estatal competente si considera que sus datos se están tratando de forma ilegítima, que en España es la <strong>Agencia Española de Protección de Datos (AEPD)</strong> a través de su portal web oficial (www.aepd.es).
@@ -483,7 +483,7 @@ export default function LegalPages({ view, onClose, onOpenCookieSettings }: Lega
                   Dada la naturaleza del servicio (en el cual Brétema Studio asume la totalidad del coste de diseño inicial, maquetación, programación, compra de licencias y registro de dominios sin cobrar una tarifa inicial de implantación o puesta en marcha), todos nuestros planes de suscripción mensual están sujetos a un <strong>compromiso de permanencia mínima obligatoria de 12 meses</strong> naturales desde el primer pago del servicio.
                 </p>
                 <p>
-                  Transcurrido el primer año de vigencia obligatoria, el contrato se prorrogará automáticamente por mensualidades sucesivas, pudiendo el cliente rescindir el servicio en cualquier momento con un preaviso mínimo de <strong>15 días hábiles</strong> mediante correo electrónico a hola@bretemastudio.com.
+                  Transcurrido el primer año de vigencia obligatoria, el contrato se prorrogará automáticamente por mensualidades sucesivas, pudiendo el cliente rescindir el servicio en cualquier momento con un preaviso mínimo de <strong>15 días hábiles</strong> mediante correo electrónico a hola@ribadeoweb.com.
                 </p>
               </section>
 

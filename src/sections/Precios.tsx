@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { PricingPlan } from '../types';
 import LucideIcon from '../components/LucideIcon';
+import { trackSubscriptionClick } from '../lib/analytics';
 
 interface PreciosProps {
   plans: PricingPlan[];
@@ -9,16 +10,21 @@ interface PreciosProps {
 }
 
 export default function Precios({ plans, onSelectPlan }: PreciosProps) {
+  const handleSelectPlanWithTracking = (planName: string, price: string, isCustom: boolean = false) => {
+    trackSubscriptionClick(planName, price, isCustom);
+    onSelectPlan(planName);
+  };
+
   return (
     <section id="precios" className="py-24 bg-[#071324] relative overflow-hidden border-t border-white/10">
       {/* Decorative ambient backgrounds */}
       <div className="absolute top-1/4 right-0 w-80 h-80 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 left-0 w-80 h-80 bg-blue-600/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+      <div className="w-full px-6 md:px-12 lg:px-16 xl:px-20 relative z-10">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
+        <div className="text-center max-w-5xl mx-auto mb-20">
           <span className="font-sans text-xs font-bold text-sky-300 uppercase tracking-widest bg-sky-500/10 px-3.5 py-2 rounded-full inline-block mb-4 border border-sky-400/20">
             Planes y Precios
           </span>
@@ -90,7 +96,7 @@ export default function Precios({ plans, onSelectPlan }: PreciosProps) {
 
               {/* Action Button */}
               <button
-                onClick={() => onSelectPlan(plan.name)}
+                onClick={() => handleSelectPlanWithTracking(plan.name, plan.price)}
                 className={`w-full mt-8 py-3 rounded-xl font-sans text-xs font-semibold transition-all duration-300 transform active:scale-95 ${
                   plan.featured
                     ? 'bg-sky-500/25 hover:bg-sky-500/40 text-white border border-sky-400/50 hover:border-sky-300 hover:shadow-[0_0_15px_rgba(56,189,248,0.3)]'
@@ -158,19 +164,19 @@ export default function Precios({ plans, onSelectPlan }: PreciosProps) {
               <div className="flex flex-wrap gap-2.5 mt-6">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-sky-500/10 border border-sky-400/20 font-sans text-xs text-sky-300">
                   <LucideIcon name="Settings" size={12} />
-                  Sistemas CRM & PYMEs
+                  CRM y Gestión Pymes
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-sky-500/10 border border-sky-400/20 font-sans text-xs text-sky-300">
                   <LucideIcon name="Calendar" size={12} />
-                  Motores de Reserva
+                  Hoteles y Apartamentos Turísticos con Motor de Reservas
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-sky-500/10 border border-sky-400/20 font-sans text-xs text-sky-300">
-                  <LucideIcon name="Briefcase" size={12} />
-                  Gestión y Restaurantes
+                  <LucideIcon name="Utensils" size={12} />
+                  Restaurante y cartas digitales
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-sky-500/10 border border-sky-400/20 font-sans text-xs text-sky-300">
                   <LucideIcon name="RefreshCw" size={12} />
-                  Renovación Estática
+                  Renovación Completa de tu antigua Web, llévala a Siglo XXI.
                 </span>
               </div>
             </div>
@@ -178,11 +184,10 @@ export default function Precios({ plans, onSelectPlan }: PreciosProps) {
             <div className="lg:col-span-4 flex flex-col items-center lg:items-end justify-center w-full">
               <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 text-center lg:text-right w-full max-w-xs mb-4">
                 <span className="block font-sans text-xs text-sky-300 uppercase tracking-wider mb-1">Suscripción Personalizada</span>
-                <span className="block font-serif text-lg font-bold text-white">Bajo Presupuesto</span>
                 <span className="block font-sans text-[10px] text-white/70 mt-1.5">Sin Compromiso Inicial</span>
               </div>
               <button
-                onClick={() => onSelectPlan('Proyecto a Medida')}
+                onClick={() => handleSelectPlanWithTracking('Proyecto a Medida', 'Custom', true)}
                 className="w-full max-w-xs bg-sky-500/25 hover:bg-sky-500/40 text-white border border-sky-400/40 hover:border-sky-300 py-4 rounded-xl font-sans text-sm font-semibold transition-all duration-300 hover:shadow-[0_0_20px_rgba(56,189,248,0.3)] hover:-translate-y-0.5 active:scale-95 transform"
               >
                 Solicitar Presupuesto

@@ -14,12 +14,14 @@ import LucideIcon from './components/LucideIcon';
 import CookieBanner from './components/CookieBanner';
 import LegalPages from './components/LegalPages';
 import ServiceDetailPages from './components/ServiceDetailPages';
+import { DEFAULT_CONTENT } from './data/defaultContent';
+import { initGA, setupTimeOnPageTracker, trackPageView } from './lib/analytics';
 
 export default function App() {
-  const [content, setContent] = useState<CMSContent | null>(null);
+  const [content, setContent] = useState<CMSContent>(DEFAULT_CONTENT);
   const [selectedPlan, setSelectedPlan] = useState('');
   const [isAdminMode, setIsAdminMode] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [currentLegalView, setCurrentLegalView] = useState<'none' | 'aviso-legal' | 'politica-privacidad' | 'politica-cookies' | 'terminos-servicio'>('none');
   const [activeServiceView, setActiveServiceView] = useState<'none' | 'diseno' | 'alquiler' | 'seo'>('none');
   const [forceShowCookieSettings, setForceShowCookieSettings] = useState(false);
@@ -28,17 +30,44 @@ export default function App() {
   const loadContent = async () => {
     try {
       const res = await fetch('/api/content');
-      const data = await res.json();
-      setContent(data);
-      setIsLoading(false);
+      if (res.ok) {
+        const data = await res.json();
+        if (data && typeof data === 'object' && Object.keys(data).length > 0) {
+          setContent(data);
+        }
+      }
     } catch (err) {
-      console.error('Error fetching CMS content:', err);
+      console.warn('Error fetching CMS content from API, using default content instead:', err);
+    } finally {
       setIsLoading(false);
     }
   };
 
   useEffect(() => {
     loadContent();
+  }, []);
+
+  // Initialize GA4, setup consent watcher, time tracking, and hash-based SPA pageviews
+  useEffect(() => {
+    initGA();
+
+    const cleanupTimeTracker = setupTimeOnPageTracker();
+
+    const handleConsentUpdate = () => {
+      initGA();
+    };
+    window.addEventListener('cookie_consent_updated', handleConsentUpdate);
+
+    const handleHashChange = () => {
+      trackPageView(window.location.pathname + window.location.hash);
+    };
+    window.addEventListener('hashchange', handleHashChange);
+
+    return () => {
+      cleanupTimeTracker();
+      window.removeEventListener('cookie_consent_updated', handleConsentUpdate);
+      window.removeEventListener('hashchange', handleHashChange);
+    };
   }, []);
 
   // Dynamically update document head SEO titles & tags!
@@ -78,14 +107,7 @@ export default function App() {
     contactSection?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  if (isLoading || !content) {
-    return (
-      <div className="min-h-screen bg-[#060F1E] flex flex-col items-center justify-center gap-4">
-        <LucideIcon name="RefreshCw" size={36} className="text-sky-300 animate-spin" />
-        <span className="font-serif text-lg font-medium text-white">Cargando Bretema Studio...</span>
-      </div>
-    );
-  }
+
 
   if (isAdminMode) {
     return (
@@ -169,11 +191,11 @@ export default function App() {
         {/* Background shapes */}
         <div className="absolute bottom-0 right-0 w-80 h-80 bg-sky-500/5 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-4 gap-12 relative z-10">
+        <div className="w-full px-6 md:px-12 lg:px-16 xl:px-20 grid grid-cols-1 md:grid-cols-4 gap-12 relative z-10">
           
           {/* Logo Brand info */}
           <div className="md:col-span-1 flex flex-col items-start gap-4">
-            <span className="font-serif text-2xl font-bold tracking-tight text-white">Brétema Studio Web</span>
+            <span className="font-serif text-2xl font-bold tracking-tight text-white">Ribadeo Studio Web</span>
             <p className="font-sans text-xs text-white/70 leading-relaxed max-w-xs">
               Diseño web sofisticado, rápido y de alto impacto por suscripción mensual. Inspirado en la naturaleza y la elegancia costera de Ribadeo.
             </p>
@@ -196,7 +218,7 @@ export default function App() {
             <h4 className="font-serif text-sm font-bold text-sky-300 uppercase tracking-wider">Contacto</h4>
             <div className="flex flex-col gap-2 font-sans text-xs text-white/80">
               <a href="tel:+34661965144" className="flex items-center gap-1.5 hover:text-sky-300 transition-colors"><LucideIcon name="Phone" size={12} className="text-sky-300" /> +34 661 96 51 44</a>
-              <span className="flex items-center gap-1.5"><LucideIcon name="Mail" size={12} className="text-sky-300" /> hola@bretemastudio.com</span>
+              <a href="mailto:hola@ribadeoweb.com" className="flex items-center gap-1.5 hover:text-sky-300 transition-colors"><LucideIcon name="Mail" size={12} className="text-sky-300" /> hola@ribadeoweb.com</a>
               <span className="flex items-center gap-1.5"><LucideIcon name="MapPin" size={12} className="text-sky-300" /> Ribadeo, Galicia (España)</span>
               <span className="flex items-center gap-1.5"><LucideIcon name="Sparkles" size={12} className="text-sky-300" /> Atendemos de Lunes a Viernes</span>
             </div>

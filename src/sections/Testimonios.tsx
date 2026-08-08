@@ -32,7 +32,7 @@ export default function Testimonios({ testimonials }: TestimoniosProps) {
 
   return (
     <section id="testimonios" className="py-24 bg-[#060F1E] relative overflow-hidden border-t border-white/10">
-      <div className="max-w-4xl mx-auto px-6 relative z-10">
+      <div className="w-full max-w-6xl xl:max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         
         {/* Header */}
         <div className="text-center mb-12">

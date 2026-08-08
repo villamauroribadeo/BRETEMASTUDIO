@@ -86,6 +86,10 @@ export default function CookieBanner({ forceShowSettings = false, onSettingsClos
   const saveConsent = (prefs: CookiePreferences) => {
     localStorage.setItem('cookie_consent_status', prefs.analytics || prefs.marketing ? 'accepted' : 'rejected');
     localStorage.setItem('cookie_preferences', JSON.stringify(prefs));
+    
+    // Dispatch native custom event to update analytics immediately
+    window.dispatchEvent(new Event('cookie_consent_updated'));
+    
     setIsVisible(false);
     setIsConfiguring(false);
     if (onSettingsClosed) {

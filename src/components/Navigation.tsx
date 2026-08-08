@@ -64,7 +64,7 @@ export default function Navigation({ onAdminClick, isAdmin, onExitAdmin, onExitL
             : 'bg-transparent py-6'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+        <div className="w-full px-6 md:px-12 lg:px-16 xl:px-20 flex items-center justify-between">
           {/* Logo */}
           <a
             href="#hero"
@@ -72,7 +72,7 @@ export default function Navigation({ onAdminClick, isAdmin, onExitAdmin, onExitL
             className="flex items-center gap-2 group"
           >
             <span className="font-valuxe text-2xl font-bold tracking-tight transition-colors duration-300 text-white group-hover:text-sky-300">
-              Brétema Studio Web
+              Ribadeo Studio Web
             </span>
           </a>
 

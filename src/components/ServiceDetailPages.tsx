@@ -106,7 +106,7 @@ export default function ServiceDetailPages({ service, onClose, onSelectPlan }: S
           title: 'Una estrategia inteligente adaptada al mercado actual',
           paragraphs: [
             'En el mundo empresarial actual, comprar tecnología que se devalúa y se vuelve obsoleta ya no tiene sentido estratégico. Al igual que el renting de vehículos o maquinaria, el renting web te ofrece la mejor herramienta digital del mercado, actualizada de manera constante, a cambio de una cuota fija deducible.',
-            'Con Brétema Studio Web, eres el dueño de tus contenidos y de tu presencia digital, mientras nosotros asumimos toda la carga tecnológica, el servidor de alta velocidad y el soporte reactivo en menos de 24 horas.',
+            'Con Ribadeo Studio Web, eres el dueño de tus contenidos y de tu presencia digital, mientras nosotros asumimos toda la carga tecnológica, el servidor de alta velocidad y el soporte reactivo en menos de 24 horas.',
             'Optimiza tus impuestos, mantén tu capital en el banco y deja que nos encarguemos de que tu negocio nunca deje de brillar en internet.'
           ]
         }
@@ -172,7 +172,7 @@ export default function ServiceDetailPages({ service, onClose, onSelectPlan }: S
       <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-sky-500/5 rounded-full blur-[120px] pointer-events-none animate-pulse" />
       <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="max-w-5xl mx-auto relative z-10 text-left">
+      <div className="w-full max-w-6xl xl:max-w-7xl mx-auto relative z-10 text-left">
         {/* Navigation back and path */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-white/10 pb-6 mb-10">
           <button
@@ -184,7 +184,7 @@ export default function ServiceDetailPages({ service, onClose, onSelectPlan }: S
           </button>
 
           <div className="text-xs text-white/50 font-mono">
-            <span>Brétema Studio Web</span>
+            <span>Ribadeo Studio Web</span>
             <span className="mx-2">/</span>
             <span>Servicios</span>
             <span className="mx-2">/</span>

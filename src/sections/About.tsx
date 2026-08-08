@@ -14,7 +14,7 @@ export default function About({ onCtaClick }: AboutProps) {
 
   return (
     <section id="sobre-nosotros" className="py-24 bg-[#071324] relative overflow-hidden border-t border-white/10">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <div className="w-full px-6 md:px-12 lg:px-16 xl:px-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           
           {/* Left: Beautiful Grid / Image Mockups */}

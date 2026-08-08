@@ -105,13 +105,76 @@ app.post("/api/auth/login", (req, res) => {
   }
 });
 
+// Helper function to dispatch emails via Brevo REST API v3
+async function sendBrevoEmail({
+  to,
+  subject,
+  htmlContent,
+  replyTo
+}: {
+  to: { email: string; name?: string }[];
+  subject: string;
+  htmlContent: string;
+  replyTo?: { email: string; name?: string };
+}) {
+  const apiKey = process.env.BREVO_API_KEY;
+  if (!apiKey) {
+    console.log("[BREVO INFO] BREVO_API_KEY no configurada en las variables de entorno. Se simula el envío.");
+    return false;
+  }
+
+  const senderEmail = process.env.BREVO_SENDER_EMAIL || "hola@ribadeoweb.com";
+  const senderName = "Ribadeo Studio Web";
+
+  try {
+    const response = await fetch("https://api.brevo.com/v3/smtp/email", {
+      method: "POST",
+      headers: {
+        "accept": "application/json",
+        "api-key": apiKey,
+        "content-type": "application/json"
+      },
+      body: JSON.stringify({
+        sender: { name: senderName, email: senderEmail },
+        to,
+        subject,
+        htmlContent,
+        ...(replyTo ? { replyTo } : {})
+      })
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error(`[BREVO ERROR ${response.status}]:`, errorText);
+      return false;
+    }
+
+    const resData = await response.json();
+    console.log(`[BREVO ÉXITO]: Correo enviado a ${to.map(t => t.email).join(', ')}. MessageId:`, resData.messageId);
+    return true;
+  } catch (error) {
+    console.error("[BREVO EXCEPCIÓN]:", error);
+    return false;
+  }
+}
+
 // 4. Submit contact form and generate Gemini Auto-reply
 app.post("/api/contact", async (req, res) => {
-  const { name, email, message, planSelected } = req.body;
+  const { name, email, phone, message, planSelected } = req.body;
   
   if (!name || !email || !message) {
     return res.status(400).json({ error: "Nombre, email y mensaje son campos obligatorios" });
   }
+
+  // Log simulation to hola@ribadeoweb.com
+  console.log("==========================================================================");
+  console.log(`[FORMULARIO ENVIADO A: hola@ribadeoweb.com]`);
+  console.log(`De: ${name} <${email}>`);
+  console.log(`Teléfono: ${phone || "No proporcionado"}`);
+  console.log(`Asunto: Nueva consulta de ${name} - Ribadeo Studio Web`);
+  console.log(`Mensaje:\n${message}`);
+  console.log(`Plan seleccionado: ${planSelected || "Ninguno"}`);
+  console.log("==========================================================================");
 
   const db = readDb();
   if (!db.messages) db.messages = [];
@@ -124,21 +187,22 @@ app.post("/api/contact", async (req, res) => {
   if (ai) {
     try {
       const prompt = `
-        Genera una respuesta automática por correo electrónico personalizada, cordial, cercana y sumamente profesional para un cliente de Bretema Studio.
-        Bretema Studio es un estudio boutique gallego de diseño web premium y por suscripción.
+        Genera una respuesta automática por correo electrónico personalizada, cordial, cercana y sumamente profesional para un cliente de Ribadeo Studio Web.
+        Ribadeo Studio Web es un estudio boutique gallego de diseño web premium y por suscripción.
         
         Datos del cliente:
         - Nombre: ${name}
         - Email: ${email}
+        - Teléfono: ${phone || "No proporcionado"}
         - Mensaje original enviado por el cliente: "${message}"
         - Plan seleccionado/interés: ${planSelected || "Ninguno en particular"}
         
         Instrucciones de redacción:
-        - Escribe en español en primera persona del plural ("nosotros" como equipo de Bretema).
-        - El tono debe ser cálido, minimalista y profesional, evocando tranquilidad e innovación.
+        - Escribe en español en primera persona del plural ("nosotros" como equipo de Ribadeo Studio Web).
+        - El tono debe ser cálido, minimalista y profesional, evocando tranquilidad e innovación desde Ribadeo.
         - Haz una referencia específica y natural a lo que el cliente pregunta o comenta en su mensaje, demostrando que ya hemos leído su consulta con atención.
         - Explica que el equipo está analizando su caso y le escribirá personalmente en menos de 24 horas para agendar una sesión de descubrimiento.
-        - Estructura el correo de manera clara y estética, con un saludo cálido, párrafos ordenados y firma formal como "El equipo de Bretema Studio".
+        - Estructura el correo de manera clara y estética, con un saludo cálido, párrafos ordenados y firma formal como "El equipo de Ribadeo Studio Web".
         - No incluyas marcadores de posición (como [Tu Nombre]). Genera un correo completo que parezca 100% real y listo para enviar.
       `;
 
@@ -150,17 +214,92 @@ app.post("/api/contact", async (req, res) => {
       autoReplyText = response.text || "";
     } catch (error) {
       console.error("Error generating Gemini auto-reply:", error);
-      autoReplyText = `¡Hola, ${name}! Muchas gracias por ponerte en contacto con Bretema Studio. Hemos recibido tu mensaje con éxito. Un miembro de nuestro equipo lo revisará en detalle y se pondrá en contacto contigo en las próximas horas para coordinar una sesión de asesoramiento gratuito. ¡Que tengas un excelente día!`;
+      autoReplyText = `¡Hola, ${name}! Muchas gracias por ponerte en contacto con Ribadeo Studio Web. Hemos recibido tu mensaje con éxito. Un miembro de nuestro equipo lo revisará en detalle y se pondrá en contacto contigo en las próximas horas para coordinar una sesión de asesoramiento gratuito. ¡Que tengas un excelente día!`;
     }
   } else {
     // Simulated auto-reply if Gemini is offline
-    autoReplyText = `¡Hola, ${name}! Gracias por contactar con Bretema Studio. Hemos recibido tu consulta sobre el plan ${planSelected || "web"}. Nuestro equipo ya se encuentra revisando tu mensaje: "${message.substring(0, 50)}...". Nos pondremos en contacto directo contigo a través de ${email} en un plazo máximo de 24 horas laborables para agendar nuestra primera reunión de descubrimiento. ¡Un saludo afectuoso desde la costa gallega!`;
+    autoReplyText = `¡Hola, ${name}! Gracias por contactar con Ribadeo Studio Web. Hemos recibido tu consulta sobre el plan ${planSelected || "web"}. Nuestro equipo ya se encuentra revisando tu mensaje: "${message.substring(0, 50)}...". Nos pondremos en contacto directo contigo a través de ${email} en un plazo máximo de 24 horas laborables para agendar nuestra primera reunión de descubrimiento. ¡Un saludo afectuoso desde Ribadeo!`;
+  }
+
+  // 1. Envío automático por Brevo a hola@ribadeoweb.com (Notificación interna)
+  const adminHtmlContent = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #ffffff; color: #1e293b;">
+      <div style="border-bottom: 2px solid #0284c7; padding-bottom: 12px; margin-bottom: 20px;">
+        <h2 style="color: #0284c7; margin: 0; font-size: 20px;">Nueva consulta recibida en la web</h2>
+        <span style="font-size: 12px; color: #64748b;">Ribadeo Studio Web &bull; ${new Date().toLocaleString('es-ES')}</span>
+      </div>
+      
+      <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 14px;">
+        <tr>
+          <td style="padding: 8px 0; font-weight: bold; width: 140px; color: #475569;">Cliente:</td>
+          <td style="padding: 8px 0; color: #0f172a;">${name}</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px 0; font-weight: bold; color: #475569;">Email:</td>
+          <td style="padding: 8px 0;"><a href="mailto:${email}" style="color: #0284c7; text-decoration: none;">${email}</a></td>
+        </tr>
+        <tr>
+          <td style="padding: 8px 0; font-weight: bold; color: #475569;">Teléfono:</td>
+          <td style="padding: 8px 0; color: #0f172a;">${phone || 'No proporcionado'}</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px 0; font-weight: bold; color: #475569;">Plan de Interés:</td>
+          <td style="padding: 8px 0; color: #0284c7; font-weight: bold;">${planSelected || 'Consulta General'}</td>
+        </tr>
+      </table>
+
+      <div style="background-color: #f8fafc; border-left: 4px solid #0284c7; padding: 16px; border-radius: 6px; margin-bottom: 24px;">
+        <h3 style="margin-top: 0; margin-bottom: 8px; font-size: 14px; color: #334155;">Mensaje del usuario:</h3>
+        <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #1e293b; white-space: pre-wrap;">${message}</p>
+      </div>
+
+      <div style="text-align: center; margin-top: 24px;">
+        <a href="mailto:${email}" style="background-color: #0284c7; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block;">Responder directamente a ${name}</a>
+      </div>
+    </div>
+  `;
+
+  await sendBrevoEmail({
+    to: [{ email: "hola@ribadeoweb.com", name: "Ribadeo Studio Web" }],
+    subject: `⚡ [NUEVA WEB INFO] Consulta de ${name} (${planSelected || 'Web'})`,
+    htmlContent: adminHtmlContent,
+    replyTo: { email, name }
+  });
+
+  // 2. Envío automático de confirmación al cliente (Auto-reply)
+  if (email) {
+    const formattedReplyHtml = autoReplyText.replace(/\n/g, '<br/>');
+    const userHtmlContent = `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #ffffff; color: #1e293b;">
+        <div style="text-align: center; padding-bottom: 16px; border-bottom: 1px solid #f1f5f9; margin-bottom: 20px;">
+          <h1 style="color: #0284c7; margin: 0; font-size: 22px; font-family: Georgia, serif;">Ribadeo Studio Web</h1>
+          <p style="color: #64748b; font-size: 12px; margin-top: 4px;">Diseño Web Inteligente por Suscripción &bull; Ribadeo, Galicia</p>
+        </div>
+
+        <div style="font-size: 15px; line-height: 1.7; color: #334155; margin-bottom: 24px;">
+          ${formattedReplyHtml}
+        </div>
+
+        <div style="border-top: 1px solid #f1f5f9; padding-top: 16px; text-align: center; font-size: 12px; color: #94a3b8;">
+          <p style="margin: 0;">Ribadeo Studio Web &bull; Ribadeo, Galicia (España)</p>
+          <p style="margin: 4px 0 0;"><a href="mailto:hola@ribadeoweb.com" style="color: #0284c7; text-decoration: none;">hola@ribadeoweb.com</a> &bull; +34 661 96 51 44</p>
+        </div>
+      </div>
+    `;
+
+    await sendBrevoEmail({
+      to: [{ email, name }],
+      subject: `Hemos recibido tu consulta - Ribadeo Studio Web`,
+      htmlContent: userHtmlContent,
+      replyTo: { email: "hola@ribadeoweb.com", name: "Ribadeo Studio Web" }
+    });
   }
 
   const savedMessage = {
     id: newMessageId,
     name,
     email,
+    phone: phone || "",
     message,
     planSelected,
     timestamp,
